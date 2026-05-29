@@ -917,27 +917,73 @@ h1 {
 .video-card-grid {
   margin-top: 24px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 86px;
   gap: 18px;
 }
 
 .video-card-grid article {
+  position: relative;
   margin: 0;
+  min-width: 0;
+}
+
+.video-extra-italy {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 6;
+}
+
+.video-extra-night {
+  grid-column: 4 / span 5;
+  grid-row: 1 / span 2;
+}
+
+.video-extra-drone {
+  grid-column: 9 / span 4;
+  grid-row: 1 / span 2;
+}
+
+.video-extra-shoreline {
+  grid-column: 4 / span 6;
+  grid-row: 3 / span 2;
+}
+
+.video-extra-pool {
+  grid-column: 10 / span 3;
+  grid-row: 3 / span 4;
+}
+
+.video-extra-aerial {
+  grid-column: 4 / span 6;
+  grid-row: 5 / span 2;
 }
 
 .video-card-grid video {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   display: block;
   object-fit: cover;
-  background: var(--blue-soft);
+  background: #062331;
   border-radius: 15px;
 }
 
+.video-card-grid .video-card-vertical video {
+  object-fit: cover;
+}
+
 .video-card-grid p {
-  margin: 11px 0 0 3px;
-  font-size: 0.88rem;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  padding: 7px 10px;
+  color: var(--white);
+  background: rgba(8, 45, 59, 0.58);
+  border-radius: 100px;
+  font-size: 0.72rem;
   font-weight: 600;
+  line-height: 1.2;
+  pointer-events: none;
 }
 
 .media-card {
@@ -1068,6 +1114,14 @@ h1 {
   object-fit: cover;
 }
 
+.photo-strip-beach {
+  background: var(--blue-soft);
+}
+
+.photo-strip .photo-strip-beach img {
+  object-fit: contain;
+}
+
 .photo-strip figcaption {
   position: absolute;
   right: 14px;
@@ -1085,7 +1139,7 @@ h1 {
 }
 
 .services {
-  margin-top: 118px;
+  margin-top: 100px;
   padding: clamp(46px, 6vw, 74px);
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
@@ -1152,7 +1206,7 @@ h1 {
 }
 
 .process {
-  margin-top: 116px;
+  margin-top: 99px;
 }
 
 .process ol {
@@ -1371,7 +1425,38 @@ h1 {
   }
 
   .video-card-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 76px;
+  }
+
+  .video-extra-italy {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 6;
+  }
+
+  .video-extra-night {
+    grid-column: 3 / span 4;
+    grid-row: 1 / span 2;
+  }
+
+  .video-extra-drone {
+    grid-column: 3 / span 4;
+    grid-row: 3 / span 2;
+  }
+
+  .video-extra-shoreline {
+    grid-column: 1 / span 4;
+    grid-row: 7 / span 2;
+  }
+
+  .video-extra-pool {
+    grid-column: 5 / span 2;
+    grid-row: 5 / span 6;
+  }
+
+  .video-extra-aerial {
+    grid-column: 1 / span 4;
+    grid-row: 9 / span 2;
   }
 
   .services-title {
@@ -1526,7 +1611,20 @@ h1 {
   }
 
   .video-card-grid article {
+    height: 220px;
     margin-bottom: 18px;
+  }
+
+  .video-card-grid .video-card-vertical {
+    width: min(72vw, 260px);
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .video-card-grid .video-card-vertical video {
+    height: auto;
+    aspect-ratio: 9 / 16;
   }
 
   .media-card {
