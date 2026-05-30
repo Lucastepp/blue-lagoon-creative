@@ -8,30 +8,45 @@
     </p>
   </div>
 
-  <form class="project-form">
-    <label>
-      Your name
-      <input type="text" name="name" autocomplete="name" placeholder="Name" />
-    </label>
-    <label>
-      Email
-      <input type="email" name="email" autocomplete="email" placeholder="Email address" />
-    </label>
-    <label class="full-row">
-      Type of place
-      <select name="property-type">
-        <option value="">Choose a property type</option>
-        <option>Hotel or resort</option>
-        <option>Holiday rental or villa</option>
-        <option>Venue or retreat</option>
-        <option>Destination property</option>
-      </select>
-    </label>
-    <label class="full-row">
-      What should look better online?
-      <textarea name="message" rows="4" placeholder="Photos, video, drone, a website, marketing or the full refresh..."></textarea>
-    </label>
-    <button class="button button-primary full-row" type="button">Send project details</button>
-    <p class="form-note full-row">Concept form only. Connect a secured delivery path before launch.</p>
-  </form>
+  @if (sent()) {
+    <div class="form-sent">
+      <h3>Brief received.</h3>
+      <p>
+        Thanks{{ model.name.trim() ? ', ' + firstName() : '' }}. We&rsquo;ll read it properly and come
+        back with a plan, not a pitch.
+      </p>
+    </div>
+  } @else {
+    <form class="project-form" (ngSubmit)="submit()">
+      <label>
+        Your name
+        <input type="text" name="name" autocomplete="name" placeholder="Name" [(ngModel)]="model.name" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" autocomplete="email" placeholder="Email address" [(ngModel)]="model.email" required />
+      </label>
+      <label class="full-row">
+        Type of place
+        <select name="propertyType" [(ngModel)]="model.propertyType">
+          <option value="">Choose a property type</option>
+          <option>Hotel or resort</option>
+          <option>Holiday rental or villa</option>
+          <option>Venue or retreat</option>
+          <option>Destination property</option>
+        </select>
+      </label>
+      <label class="full-row">
+        What should look better online?
+        <textarea name="message" rows="4" placeholder="Photos, video, drone, a website, marketing or the full refresh..." [(ngModel)]="model.message"></textarea>
+      </label>
+      @if (error()) {
+        <p class="lead-error full-row">{{ error() }}</p>
+      }
+      <button class="button button-primary full-row" type="submit" [disabled]="submitting()">
+        {{ submitting() ? 'Sending…' : 'Send project details' }}
+      </button>
+      <p class="form-note full-row">We&rsquo;ll reply by email. Your details aren&rsquo;t shared.</p>
+    </form>
+  }
 </section>
