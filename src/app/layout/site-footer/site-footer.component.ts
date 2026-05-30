@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './site-footer.component.html',
 })
 export class SiteFooterComponent {
-  // TODO: point at the live Sleight & Co. bureau domain once confirmed.
-  protected readonly bureauUrl = 'https://sleightandco.example';
+  protected readonly bureauUrl = 'https://sleightand.co';
 }
