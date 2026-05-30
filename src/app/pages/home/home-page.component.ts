@@ -5,6 +5,7 @@ import { GallerySectionComponent } from './sections/gallery-section/gallery-sect
 import { HeroSectionComponent } from './sections/hero-section/hero-section.component';
 import { IntroSectionComponent } from './sections/intro-section/intro-section.component';
 import { ProcessSectionComponent } from './sections/process-section/process-section.component';
+import { ProjectFinderSectionComponent } from './sections/project-finder-section/project-finder-section.component';
 import { ServicesSectionComponent } from './sections/services-section/services-section.component';
 
 @Component({
@@ -16,6 +17,7 @@ import { ServicesSectionComponent } from './sections/services-section/services-s
     HeroSectionComponent,
     IntroSectionComponent,
     ProcessSectionComponent,
+    ProjectFinderSectionComponent,
     ServicesSectionComponent,
   ],
   templateUrl: './home-page.component.html',

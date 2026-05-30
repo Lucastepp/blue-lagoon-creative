@@ -1,0 +1,59 @@
+<section class="project-finder" id="project-finder" aria-labelledby="project-finder-title">
+  <div class="finder-intro">
+    <p class="eyebrow">Not sure where to start?</p>
+    <h2 id="project-finder-title">Find the first useful move.</h2>
+    <p>
+      Photography, film, drone, performance, websites and guest-facing AI can
+      solve different problems. Three quick questions can make the first
+      conversation more useful.
+    </p>
+  </div>
+
+  <div class="finder-shell">
+    <div class="finder-topbar">
+      <button class="finder-back" type="button" (click)="back()" [disabled]="stepIndex === 0" aria-label="Go back">
+        <span aria-hidden="true">&larr;</span>
+        Back
+      </button>
+      <div class="finder-progress" aria-label="Questionnaire progress">
+        <span [style.width.%]="progress"></span>
+      </div>
+      <strong>{{ progress }}%</strong>
+    </div>
+
+    @if (!isComplete) {
+      <div class="finder-question">
+        <p class="eyebrow">{{ activeStep.eyebrow }}</p>
+        <h3>{{ activeStep.title }}</h3>
+        <p>{{ activeStep.intro }}</p>
+        <div class="finder-options">
+          @for (option of activeStep.options; track option.value) {
+            <button class="finder-option" type="button" (click)="choose(option)">
+              <span>
+                <strong>{{ option.label }}</strong>
+                <small>{{ option.detail }}</small>
+              </span>
+              <b aria-hidden="true">&rarr;</b>
+            </button>
+          }
+        </div>
+      </div>
+    } @else {
+      <div class="finder-result">
+        <p class="eyebrow">A practical starting point</p>
+        <h3>{{ recommendation.title }}</h3>
+        <p>{{ recommendation.text }}</p>
+        <div class="finder-support">
+          @for (item of recommendation.support; track item) {
+            <span>{{ item }}</span>
+          }
+        </div>
+        <div class="finder-result-actions">
+          <a class="button button-primary" href="#contact">Send project details</a>
+          <button class="finder-restart" type="button" (click)="restart()">Start again</button>
+        </div>
+        <small>Final scope depends on the property, available media, timeline and priorities.</small>
+      </div>
+    }
+  </div>
+</section>
