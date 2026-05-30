@@ -31,7 +31,43 @@ export const heroWords = ['direct', 'again', 'by name', 'in season'];
 export const promise =
   'A property that travels. Guests find you, feel the place before they arrive, and book you direct.';
 
-export const clientTypes = ['Boutique hotels', 'Beach resorts', 'Mountain retreats', 'City hotels'];
+export interface ClientGroup {
+  title: string;
+  image: string;
+  types: string[];
+}
+
+export const clientGroups: ClientGroup[] = [
+  {
+    title: 'Hospitality',
+    image: '/assets/blue-lagoon/hotel-facade.jpg',
+    types: [
+      'Boutique hotels',
+      'Resorts (small & mid-size)',
+      'Eco-lodges, retreats & glamping',
+      'Guesthouses & charming B&Bs',
+      'Spa & wellness resorts',
+      'Country house hotels',
+    ],
+  },
+  {
+    title: 'Short-term rental',
+    image: '/assets/blue-lagoon/garden-stairs.jpg',
+    types: [
+      'Luxury villa rental',
+      'Premium Airbnb & private short-lets',
+      'Holiday homes & character cottages',
+      'Serviced apartments & aparthotels',
+      'Cabins, treehouses & glamping pods',
+      'Villa & property management groups',
+    ],
+  },
+  {
+    title: 'On-site dining & experience',
+    image: '/assets/blue-lagoon/bar-detail.jpg',
+    types: ['Destination restaurants', 'Hotel & resort restaurants', 'Spas & wellness centres'],
+  },
+];
 
 export const problem = {
   lead: 'Most properties hand their best guests, and 15 to 25% of the rate, to the booking platforms — then start every relationship from zero.',

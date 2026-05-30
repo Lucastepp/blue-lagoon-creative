@@ -2126,51 +2126,87 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-/* Who we work with */
-.clients-grid {
+/* Who we work with — client groups */
+.clients-groups {
   margin-top: 8px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
-.client-card {
-  position: relative;
+.client-group {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   overflow: hidden;
-  border-radius: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
   box-shadow: var(--shadow);
 }
 
-.client-card img {
+.client-group-media {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.client-group-media img {
   width: 100%;
-  height: 230px;
+  height: 100%;
   object-fit: cover;
   transition: transform 600ms ease;
 }
 
-.client-card:hover img {
+.client-group:hover .client-group-media img {
   transform: scale(1.04);
 }
 
-.client-card::after {
+.client-group-media::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(4, 41, 58, 0.6));
-  pointer-events: none;
+  background: linear-gradient(180deg, transparent 40%, rgba(4, 41, 58, 0.72));
   content: '';
 }
 
-.client-card span {
+.client-group-title {
   position: absolute;
-  right: 16px;
   bottom: 14px;
-  left: 16px;
+  left: 18px;
   z-index: 1;
   color: var(--white);
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 700;
+  letter-spacing: -0.01em;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.client-group-types {
+  margin: 0;
+  padding: 22px 22px 26px;
+  display: grid;
+  gap: 11px;
+  list-style: none;
+}
+
+.client-group-types li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.client-group-types li::before {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  content: '';
 }
 
 /* Problem + How it works — text/media bands */
@@ -2479,8 +2515,8 @@ h1 {
 }
 
 @media (max-width: 980px) {
-  .clients-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .clients-groups {
+    grid-template-columns: 1fr;
   }
 
   .problem,
@@ -2511,7 +2547,6 @@ h1 {
     margin-top: 72px;
   }
 
-  .clients-grid,
   .funnel,
   .engine-steps {
     grid-template-columns: 1fr;
