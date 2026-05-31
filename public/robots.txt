@@ -1,4 +1,7 @@
-User-agent: *
-Disallow: /
+# robots.txt — Blue Lagoon Creative
+# Production: allow all crawlers full access.
 
-# Concept preview only. Replace before publishing a production site.
+User-agent: *
+Allow: /
+
+Sitemap: https://bluelagoon-creative.com/sitemap.xml
