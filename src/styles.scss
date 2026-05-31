@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* Blue Lagoon — coastal identity, carried on the Sleight & Co. padrão */
@@ -25,10 +25,11 @@
   --gold-deep: #8f7536;
   --indigo: #06222e; /* dark anchors: finder shell, CTA band, footer */
   --hairline: rgba(8, 60, 82, 0.14);
-  --muted: #6a8593;
+  --muted: #5a7280; /* darkened for AA (4.5:1 on white) */
 
-  /* Typography — Montserrat display + Open Sans body (bureau standard) */
-  --font-display: 'Montserrat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Typography — Cormorant display (luxury serif) + Montserrat sans (labels/UI) + Open Sans body */
+  --font-display: 'Cormorant', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Montserrat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   font-synthesis: none;
@@ -322,8 +323,8 @@ h1 {
 
 .button-primary:hover,
 .button-primary:focus-visible {
-  background: var(--accent);
-  box-shadow: 0 18px 38px rgba(10, 141, 183, 0.3);
+  background: var(--blue-deep);
+  box-shadow: 0 18px 38px rgba(4, 91, 129, 0.32);
 }
 
 .button-secondary {
@@ -1063,7 +1064,7 @@ h1 {
 
 .lightbox {
   position: fixed;
-  z-index: 20;
+  z-index: 1000;
   inset: 0;
   padding: 28px;
   display: grid;
@@ -1097,7 +1098,7 @@ h1 {
 .lightbox-close,
 .lightbox-nav {
   position: fixed;
-  z-index: 21;
+  z-index: 1001;
   display: grid;
   place-items: center;
   color: var(--white);
@@ -2656,4 +2657,120 @@ h1 {
   margin: 0;
   color: var(--ink-muted);
   line-height: 1.6;
+}
+
+/* ============================================================== */
+/* Luxury type + accent refinement (ui-ux-pro-max pass)            */
+/* ============================================================== */
+
+/* Montserrat for labels / UI / sub-heads (the clean sans of the pair) */
+.eyebrow,
+.button,
+.brand strong,
+.brand small,
+.desktop-nav,
+.header-action,
+.house-tag,
+.faq-list summary,
+.client-group-title,
+.funnel-node,
+.funnel-move span,
+.process li::before,
+.engine-step span,
+.metric h3,
+.service-list span,
+.finder-option strong,
+.finder-support span,
+h3 {
+  font-family: var(--font-sans);
+}
+
+/* Cormorant runs small for its point size — nudge display leading/size up */
+h1,
+h2 {
+  letter-spacing: -0.01em;
+}
+
+.promise-text,
+.problem-lead,
+.howitworks-text,
+.intro-statement {
+  letter-spacing: -0.005em;
+}
+
+/* Accent text on light → deeper blue for AA contrast + a navier, luxe read */
+.eyebrow,
+.funnel-move span,
+.service-list span {
+  color: var(--blue-deep);
+}
+
+/* Deliberate gold on numerals — the luxury glint, used with intent */
+.funnel-node,
+.process li::before {
+  color: var(--gold-deep);
+}
+
+.metric h3 {
+  color: var(--blue-deep);
+}
+
+/* Sticky glass header — keeps the CTA reachable (ui-ux-pro-max: primary-action) */
+app-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: block;
+  background: rgba(239, 249, 248, 0.66);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+app-site-header.scrolled {
+  background: rgba(255, 255, 255, 0.84);
+  border-bottom-color: var(--line);
+  box-shadow: 0 8px 30px rgba(8, 52, 73, 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  app-site-header {
+    transition: none;
+  }
+}
+
+/* Contact form — inline validation + helper text (ui-ux-pro-max: forms) */
+.field-label {
+  font-weight: 600;
+}
+
+.req {
+  color: var(--gold-deep);
+}
+
+.field-help,
+.field-error {
+  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+}
+
+.field-help {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.field-error {
+  color: #b0434a;
+  font-weight: 600;
+}
+
+.project-form input.ng-invalid.ng-touched,
+.project-form textarea.ng-invalid.ng-touched {
+  border-color: #cf8d94;
+  background: #fdf6f6;
 }

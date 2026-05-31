@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, ElementRef, inject, signal } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-section',
@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './contact-section.component.html',
 })
 export class ContactSectionComponent {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+
   protected readonly model = { name: '', email: '', propertyType: '', message: '' };
   protected readonly submitting = signal(false);
   protected readonly sent = signal(false);
@@ -16,10 +18,15 @@ export class ContactSectionComponent {
     return this.model.name.trim().split(' ')[0];
   }
 
-  protected async submit(): Promise<void> {
+  protected async submit(form: NgForm): Promise<void> {
     this.error.set('');
-    if (!this.model.name.trim() || !this.model.email.trim()) {
-      this.error.set('Please add your name and email.');
+
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      // Move focus to the first invalid field (ui-ux-pro-max: focus-management).
+      queueMicrotask(() =>
+        this.host.nativeElement.querySelector<HTMLElement>('.project-form .ng-invalid')?.focus(),
+      );
       return;
     }
 

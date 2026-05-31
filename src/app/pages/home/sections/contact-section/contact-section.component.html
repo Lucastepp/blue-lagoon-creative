@@ -9,7 +9,7 @@
   </div>
 
   @if (sent()) {
-    <div class="form-sent">
+    <div class="form-sent" role="status">
       <h3>Brief received.</h3>
       <p>
         Thanks{{ model.name.trim() ? ', ' + firstName() : '' }}. We&rsquo;ll read it properly and come
@@ -17,17 +17,49 @@
       </p>
     </div>
   } @else {
-    <form class="project-form" (ngSubmit)="submit()">
+    <form class="project-form" #briefForm="ngForm" (ngSubmit)="submit(briefForm)" novalidate>
       <label>
-        Your name
-        <input type="text" name="name" autocomplete="name" placeholder="Name" [(ngModel)]="model.name" required />
+        <span class="field-label">Your name <span class="req" aria-hidden="true">*</span></span>
+        <input
+          type="text"
+          name="name"
+          autocomplete="name"
+          placeholder="Name"
+          [(ngModel)]="model.name"
+          required
+          #nameRef="ngModel"
+          aria-describedby="name-help"
+        />
+        @if (nameRef.invalid && nameRef.touched) {
+          <small class="field-error" role="alert">Please add your name.</small>
+        } @else {
+          <small class="field-help" id="name-help">So we know who we&rsquo;re speaking with.</small>
+        }
       </label>
+
       <label>
-        Email
-        <input type="email" name="email" autocomplete="email" placeholder="Email address" [(ngModel)]="model.email" required />
+        <span class="field-label">Email <span class="req" aria-hidden="true">*</span></span>
+        <input
+          type="email"
+          name="email"
+          autocomplete="email"
+          inputmode="email"
+          placeholder="Email address"
+          [(ngModel)]="model.email"
+          required
+          email
+          #emailRef="ngModel"
+          aria-describedby="email-help"
+        />
+        @if (emailRef.invalid && emailRef.touched) {
+          <small class="field-error" role="alert">Enter a valid email so we can reply.</small>
+        } @else {
+          <small class="field-help" id="email-help">Where we send the plan.</small>
+        }
       </label>
+
       <label class="full-row">
-        Type of place
+        <span class="field-label">Type of place</span>
         <select name="propertyType" [(ngModel)]="model.propertyType">
           <option value="">Choose a property type</option>
           <option>Hotel or resort</option>
@@ -36,13 +68,21 @@
           <option>Destination property</option>
         </select>
       </label>
+
       <label class="full-row">
-        What should look better online?
-        <textarea name="message" rows="4" placeholder="Photos, video, drone, a website, marketing or the full refresh..." [(ngModel)]="model.message"></textarea>
+        <span class="field-label">What should look better online?</span>
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Photos, video, drone, a website, marketing or the full refresh..."
+          [(ngModel)]="model.message"
+        ></textarea>
       </label>
+
       @if (error()) {
-        <p class="lead-error full-row">{{ error() }}</p>
+        <p class="lead-error full-row" role="alert">{{ error() }}</p>
       }
+
       <button class="button button-primary full-row" type="submit" [disabled]="submitting()">
         {{ submitting() ? 'Sending…' : 'Send project details' }}
       </button>
