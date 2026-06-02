@@ -47,12 +47,12 @@
 html {
   scroll-behavior: smooth;
   /* Offset in-page anchors so sections clear the sticky header (imported fix) */
-  scroll-padding-top: 110px;
+  scroll-padding-top: 92px;
 }
 
 section[id],
 [id='work'] {
-  scroll-margin-top: 110px;
+  scroll-margin-top: 92px;
 }
 
 body {
