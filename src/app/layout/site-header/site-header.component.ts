@@ -5,8 +5,6 @@ import { Component, HostBinding, HostListener } from '@angular/core';
   templateUrl: './site-header.component.html',
 })
 export class SiteHeaderComponent {
-  protected readonly bureauUrl = 'https://sleightand.co';
-
   /** Adds a stronger glass background + hairline once the page is scrolled. */
   @HostBinding('class.scrolled') protected scrolled = false;
   private ticking = false;

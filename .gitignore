@@ -13,6 +13,8 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+dev-server.log
+dev-server.err.log
 
 # IDEs and editors
 .idea/
