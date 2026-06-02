@@ -2635,39 +2635,7 @@ h1 {
   }
 }
 
-/* ---- Co-brand: "A Sleight & Co. house" ---- */
-.house-tag {
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 7px 13px;
-  color: var(--ink-muted);
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  transition:
-    color 180ms ease,
-    border-color 180ms ease;
-}
-
-.house-tag::before {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  content: '';
-}
-
-.house-tag:hover,
-.house-tag:focus-visible {
-  color: var(--ink);
-  border-color: rgba(10, 141, 183, 0.4);
-}
-
+/* ---- Sleight & Co. group footer signature ---- */
 .footer-group {
   min-width: 190px;
   display: grid;
@@ -2696,12 +2664,6 @@ h1 {
   font-size: 1.55rem;
   font-weight: 700;
   letter-spacing: -0.035em;
-}
-
-@media (max-width: 980px) {
-  .house-tag {
-    display: none;
-  }
 }
 
 /* Contact form — connected lead capture */
@@ -2743,7 +2705,6 @@ h1 {
 .brand small,
 .desktop-nav,
 .header-action,
-.house-tag,
 .faq-list summary,
 .client-group-title,
 .funnel-node,
