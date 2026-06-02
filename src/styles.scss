@@ -1687,7 +1687,7 @@ app-original-media-mark {
 
 .project-form input::placeholder,
 .project-form textarea::placeholder {
-  color: #8199a5;
+  color: #a9bdc4;
 }
 
 .project-form select {
@@ -2572,35 +2572,34 @@ app-original-media-mark {
   gap: 12px;
 }
 
-.faq-list details {
+.faq-list article {
   padding: 6px 4px;
   border-bottom: 1px solid var(--line);
 }
 
-.faq-list summary {
+.faq-question {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 20px;
   padding: 16px 0;
   color: var(--ink);
+  background: transparent;
+  border: 0;
   font-family: var(--font-display);
   font-size: 1.08rem;
   font-weight: 600;
-  list-style: none;
+  text-align: left;
   cursor: pointer;
 }
 
-.faq-list summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-list summary::after {
+.faq-question::after {
   color: var(--accent);
   font-weight: 700;
   content: '+';
 }
 
-.faq-list details[open] summary::after {
+.faq-list article.is-open .faq-question::after {
   content: '\2212';
 }
 
@@ -2617,12 +2616,12 @@ app-original-media-mark {
   overflow: hidden;
 }
 
-.faq-list details[open] .faq-answer {
+.faq-list article.is-open .faq-answer {
   grid-template-rows: 1fr;
   opacity: 1;
 }
 
-.faq-list details p {
+.faq-list article p {
   max-width: 760px;
   margin: 0 0 18px;
   color: var(--ink-muted);
@@ -2796,7 +2795,7 @@ app-original-media-mark {
 .brand small,
 .desktop-nav,
 .header-action,
-.faq-list summary,
+.faq-question,
 .client-group-title,
 .funnel-node,
 .funnel-move span,

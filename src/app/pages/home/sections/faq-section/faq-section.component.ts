@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RevealDirective } from '../../../../shared/reveal.directive';
 import { faqs } from '../../../../data/blue-lagoon.content';
 
@@ -13,14 +13,22 @@ import { faqs } from '../../../../data/blue-lagoon.content';
       </div>
       <div class="faq-list">
         @for (item of faqs; track item.q; let i = $index) {
-          <details [appReveal]="i">
-            <summary>{{ item.q }}</summary>
-            <div class="faq-answer">
+          <article [appReveal]="i" [class.is-open]="openItem() === i">
+            <button
+              class="faq-question"
+              type="button"
+              [attr.aria-expanded]="openItem() === i"
+              [attr.aria-controls]="'faq-answer-' + i"
+              (click)="toggle(i)"
+            >
+              <span>{{ item.q }}</span>
+            </button>
+            <div class="faq-answer" [id]="'faq-answer-' + i">
               <div>
                 <p>{{ item.a }}</p>
               </div>
             </div>
-          </details>
+          </article>
         }
       </div>
     </section>
@@ -28,4 +36,9 @@ import { faqs } from '../../../../data/blue-lagoon.content';
 })
 export class FaqSectionComponent {
   protected readonly faqs = faqs;
+  protected readonly openItem = signal<number | null>(null);
+
+  protected toggle(index: number): void {
+    this.openItem.update((current) => (current === index ? null : index));
+  }
 }
