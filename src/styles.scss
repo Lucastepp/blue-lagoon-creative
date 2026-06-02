@@ -656,12 +656,16 @@ h1 {
   position: absolute;
   left: 22px;
   bottom: 22px;
+  max-width: calc(100% - 180px);
   padding: 10px 14px;
+  overflow: hidden;
   color: var(--white);
   background: rgba(8, 45, 59, 0.45);
   border-radius: 100px;
   font-size: 0.72rem;
   letter-spacing: 0.06em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .film-caption {
@@ -1042,29 +1046,28 @@ app-original-media-mark {
 }
 
 .original-media-mark {
-  padding: 5px 7px 5px 5px;
+  padding: 4px 6px 4px 4px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  color: #d7fbf6;
-  background: rgba(2, 36, 51, 0.76);
-  border: 1px solid rgba(215, 251, 246, 0.34);
+  gap: 4px;
+  color: rgba(215, 251, 246, 0.8);
+  background: rgba(2, 30, 42, 0.58);
   border-radius: 100px;
-  box-shadow: 0 5px 14px rgba(2, 30, 42, 0.16);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(2, 30, 42, 0.1);
+  backdrop-filter: blur(6px);
   font-family: var(--font-sans);
-  font-size: 0.54rem;
+  font-size: 0.48rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .original-media-mark-logo {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
   border-radius: 50%;
   background:
     radial-gradient(circle at 48% 34%, #52d6e5 0 10%, transparent 11%),
