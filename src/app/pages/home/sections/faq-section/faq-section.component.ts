@@ -15,7 +15,11 @@ import { faqs } from '../../../../data/blue-lagoon.content';
         @for (item of faqs; track item.q; let i = $index) {
           <details [appReveal]="i">
             <summary>{{ item.q }}</summary>
-            <p>{{ item.a }}</p>
+            <div class="faq-answer">
+              <div>
+                <p>{{ item.a }}</p>
+              </div>
+            </div>
           </details>
         }
       </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ProjectBriefDraftService } from '../../../../shared/project-brief-draft.service';
 
 interface FinderOption {
   label: string;
@@ -18,6 +19,8 @@ interface FinderStep {
   templateUrl: './project-finder-section.component.html',
 })
 export class ProjectFinderSectionComponent {
+  private readonly briefDraft = inject(ProjectBriefDraftService);
+
   readonly steps: FinderStep[] = [
     {
       eyebrow: 'Question 01',
@@ -158,5 +161,9 @@ export class ProjectFinderSectionComponent {
   restart(): void {
     this.selections = {};
     this.stepIndex = 0;
+  }
+
+  prepareContact(): void {
+    this.briefDraft.createFromRecommendation(this.recommendation);
   }
 }

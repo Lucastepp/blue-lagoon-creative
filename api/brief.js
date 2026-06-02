@@ -1,8 +1,7 @@
 // Vercel serverless function — receives a Blue Lagoon contact/brief submission
 // and forwards it to LEAD_WEBHOOK_URL (the same mechanism as the Sleight & Co.
 // bureau: a webhook, e.g. a Google Apps Script web app bound to a Sheet).
-// Same-origin POST, so no CORS needed. If the webhook isn't configured, the
-// lead is still captured in the function logs. CommonJS so it runs without
+// Same-origin POST, so no CORS needed. CommonJS so it runs without
 // "type":"module" in package.json.
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -42,17 +41,23 @@ module.exports = async (req, res) => {
   console.log('[brief] new lead', JSON.stringify(lead));
 
   const hook = process.env.LEAD_WEBHOOK_URL;
-  if (hook) {
-    try {
-      await fetch(hook, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead),
-      });
-    } catch (err) {
-      // Lead is still in the logs; don't fail the visitor's submission.
-      console.error('[brief] webhook forward failed', err);
-    }
+  if (!hook) {
+    console.error('[brief] LEAD_WEBHOOK_URL is not configured');
+    res.status(503).json({ ok: false, error: 'Lead delivery is not configured.' });
+    return;
+  }
+
+  try {
+    const response = await fetch(hook, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead),
+    });
+    if (!response.ok) throw new Error(`Webhook returned ${response.status}`);
+  } catch (err) {
+    console.error('[brief] webhook forward failed', err);
+    res.status(502).json({ ok: false, error: 'Lead delivery failed.' });
+    return;
   }
 
   res.status(200).json({ ok: true });

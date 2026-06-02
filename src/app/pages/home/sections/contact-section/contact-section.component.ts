@@ -1,5 +1,6 @@
-import { Component, ElementRef, inject, signal } from '@angular/core';
+import { Component, effect, ElementRef, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ProjectBriefDraftService } from '../../../../shared/project-brief-draft.service';
 
 @Component({
   selector: 'app-contact-section',
@@ -8,11 +9,21 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class ContactSectionComponent {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly briefDraft = inject(ProjectBriefDraftService);
 
   protected readonly model = { name: '', email: '', propertyType: '', message: '' };
+  protected readonly messagePlaceholder =
+    "Hello Blue Lagoon,\n\nI'm interested in discussing my property. I would like to explore...";
   protected readonly submitting = signal(false);
   protected readonly sent = signal(false);
   protected readonly error = signal('');
+
+  constructor() {
+    effect(() => {
+      const draft = this.briefDraft.draft();
+      if (draft && !this.model.message.trim()) this.model.message = draft;
+    });
+  }
 
   protected firstName(): string {
     return this.model.name.trim().split(' ')[0];
