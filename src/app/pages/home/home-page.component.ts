@@ -3,6 +3,7 @@ import { AiSectionComponent } from './sections/ai-section/ai-section.component';
 import { ClientsSectionComponent } from './sections/clients-section/clients-section.component';
 import { ContactSectionComponent } from './sections/contact-section/contact-section.component';
 import { CtaSectionComponent } from './sections/cta-section/cta-section.component';
+import { ExampleFilmSectionComponent } from './sections/example-film-section/example-film-section.component';
 import { FaqSectionComponent } from './sections/faq-section/faq-section.component';
 import { FilmsSectionComponent } from './sections/films-section/films-section.component';
 import { FunnelSectionComponent } from './sections/funnel-section/funnel-section.component';
@@ -24,6 +25,7 @@ import { ServicesSectionComponent } from './sections/services-section/services-s
     ClientsSectionComponent,
     ContactSectionComponent,
     CtaSectionComponent,
+    ExampleFilmSectionComponent,
     FaqSectionComponent,
     FilmsSectionComponent,
     FunnelSectionComponent,
